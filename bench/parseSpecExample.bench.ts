@@ -31,6 +31,7 @@ import { readFile } from 'fs/promises'
 import { parse as smolTomlParse } from '../src/index.js'
 import { parse as iarnaTomlParse } from '@iarna/toml'
 import { parse as ltdJTomlParse } from '@ltd/j-toml'
+import { parse as tomlPatchParse } from '@decimalturn/toml-patch'
 import fastTomlParse from 'fast-toml'
 
 let toml = await readFile(new URL('./testfiles/toml-spec-example.toml', import.meta.url), 'utf8')
@@ -47,6 +48,11 @@ bench('@ltd/j-toml', () => {
 	ltdJTomlParse(toml)
 })
 
+bench('@decimalturn/toml-patch', () => {
+	tomlPatchParse(toml)
+})
+
 bench('fast-toml', () => {
 	fastTomlParse(toml)
 })
+
