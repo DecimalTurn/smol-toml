@@ -31,7 +31,8 @@ import { readFile } from 'fs/promises'
 import { stringify as smolTomlStringify, parse } from '../src/index.js'
 import { stringify as iarnaTomlStringify } from '@iarna/toml'
 import { stringify as ltdJTomlStringify } from '@ltd/j-toml'
-import { stringify as tomlPatchStrigify } from '@decimalturn/toml-patch'
+import { stringify as tomlPatch1Strigify } from 'toml-patch1'
+import { stringify as tomlPatch2Strigify } from 'toml-patch2'
 
 let obj = parse(
 	await readFile(new URL('./testfiles/toml-spec-example.toml', import.meta.url), 'utf8')
@@ -49,6 +50,10 @@ bench('@ltd/j-toml', () => {
 	ltdJTomlStringify(obj)
 })
 
-bench('@decimalturn/toml-patch', () => {
-	tomlPatchStrigify(obj)
+bench('toml-patch1', () => {
+	tomlPatch1Strigify(obj)
+})
+
+bench('toml-patch2', () => {
+	tomlPatch2Strigify(obj)
 })

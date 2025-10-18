@@ -27,7 +27,8 @@
 		"update-gha": "pin-github-action .github/workflows"
 	},
 	"devDependencies": {
-		"@decimalturn/toml-patch": "^0.3.7",
+		"toml-patch1": "npm:toml-patch@0.2.3",
+		"toml-patch2": "npm:@decimalturn/toml-patch@0.3.7",
 		"@iarna/toml": "3.0.0",
 		"@ltd/j-toml": "^1.38.0",
 		"@tsconfig/node-lts": "^22.0.2",

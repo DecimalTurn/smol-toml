@@ -1,4 +1,4 @@
-# Benchmarks - 2025-10-18T17:26:50+00:00
+# Benchmarks - 2025-10-18T18:32:59+00:00
 
 ```text
 
@@ -11,72 +11,82 @@ Breaking changes might not follow SemVer, please pin Vitest's version when using
  DEV  v3.2.4 /workspaces/smol-toml
 
 
- ✓ bench/stringifyLargeMixed.bench.ts 159148ms
-     name                          hz       min       max      mean       p75       p99      p995      p999      rme  samples
-   · smol-toml                10.0224   85.4651    138.28   99.7768    118.12    138.28    138.28    138.28  ±15.25%       10
-   · @iarna/toml               2.9355    294.26    377.30    340.66    365.99    377.30    377.30    377.30   ±5.59%       10
-   · @ltd/j-toml               0.6481  1,435.72  1,671.58  1,542.90  1,574.73  1,671.58  1,671.58  1,671.58   ±3.17%       10
-   · @decimalturn/toml-patch   0.1354  7,169.56  7,572.23  7,385.88  7,496.75  7,572.23  7,572.23  7,572.23   ±1.31%       10
+ ✓ bench/stringifyLargeMixed.bench.ts 174348ms
+     name             hz       min       max      mean       p75       p99      p995      p999      rme  samples
+   · smol-toml    9.9930   88.7490    146.27    100.07    103.11    146.27    146.27    146.27  ±12.92%       10
+   · @iarna/toml  2.8203    292.11    471.19    354.57    404.69    471.19    471.19    471.19  ±11.38%       10
+   · @ltd/j-toml  0.6874  1,352.68  1,599.39  1,454.79  1,552.14  1,599.39  1,599.39  1,599.39   ±4.46%       10
+   · toml-patch1  0.2726  3,508.58  3,827.69  3,668.00  3,736.90  3,827.69  3,827.69  3,827.69   ±1.86%       10
+   · toml-patch2  0.2985  3,108.11  3,655.23  3,349.94  3,417.85  3,655.23  3,655.23  3,655.23   ±3.44%       10
 
- ✓ bench/stringifyLargeMixed.bench.ts 159148ms
-     name                          hz       min       max      mean       p75       p99      p995      p999      rme  samples
-   · smol-toml                10.0224   85.4651    138.28   99.7768    118.12    138.28    138.28    138.28  ±15.25%       10
-   · @iarna/toml               2.9355    294.26    377.30    340.66    365.99    377.30    377.30    377.30   ±5.59%       10
-   · @ltd/j-toml               0.6481  1,435.72  1,671.58  1,542.90  1,574.73  1,671.58  1,671.58  1,671.58   ±3.17%       10
-   · @decimalturn/toml-patch   0.1354  7,169.56  7,572.23  7,385.88  7,496.75  7,572.23  7,572.23  7,572.23   ±1.31%       10
+ ✓ bench/stringifyLargeMixed.bench.ts 174348ms
+     name             hz       min       max      mean       p75       p99      p995      p999      rme  samples
+   · smol-toml    9.9930   88.7490    146.27    100.07    103.11    146.27    146.27    146.27  ±12.92%       10
+   · @iarna/toml  2.8203    292.11    471.19    354.57    404.69    471.19    471.19    471.19  ±11.38%       10
+   · @ltd/j-toml  0.6874  1,352.68  1,599.39  1,454.79  1,552.14  1,599.39  1,599.39  1,599.39   ±4.46%       10
+   · toml-patch1  0.2726  3,508.58  3,827.69  3,668.00  3,736.90  3,827.69  3,827.69  3,827.69   ±1.86%       10
+   · toml-patch2  0.2985  3,108.11  3,655.23  3,349.94  3,417.85  3,655.23  3,655.23  3,655.23   ±3.44%       10
 
- ✓ bench/parseSpecExample.bench.ts 3097ms
-     name                            hz     min     max    mean     p75     p99    p995    p999     rme  samples
-   · smol-toml                64,055.67  0.0145  0.3111  0.0156  0.0149  0.0304  0.0337  0.1322  ±0.44%    32028
-   · @iarna/toml              31,794.37  0.0265  0.5115  0.0315  0.0278  0.0827  0.0999  0.1984  ±0.76%    15898
-   · @ltd/j-toml              15,667.64  0.0546  2.4470  0.0638  0.0604  0.1360  0.1694  0.8347  ±1.98%     7834
-   · @decimalturn/toml-patch  11,993.33  0.0620  2.5471  0.0834  0.0733  0.2595  0.2908  0.9955  ±2.18%     5997
-   · fast-toml                43,677.40  0.0204  0.3813  0.0229  0.0208  0.0484  0.0527  0.1441  ±0.50%    21839
+ ✓ bench/parseSpecExample.bench.ts 3715ms
+     name                hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · smol-toml    62,594.22  0.0146  0.3711  0.0160  0.0151  0.0316  0.0366  0.1484  ±0.54%    31298
+   · @iarna/toml  33,798.46  0.0264  2.1466  0.0296  0.0274  0.0669  0.0817  0.1979  ±1.31%    16900
+   · @ltd/j-toml  14,664.81  0.0549  2.6407  0.0682  0.0612  0.1587  0.2184  0.8877  ±2.38%     7333
+   · toml-patch1  12,978.89  0.0588  2.7721  0.0770  0.0684  0.2498  0.2759  0.4205  ±2.17%     6490
+   · toml-patch2  10,018.48  0.0662  5.3418  0.0998  0.1287  0.2675  0.3347  0.5623  ±3.07%     5010
+   · fast-toml    38,533.75  0.0204  3.5757  0.0260  0.0211  0.0564  0.0677  0.2202  ±2.56%    19267
 
- ✓ bench/parseSpecExample.bench.ts 3097ms
-     name                            hz     min     max    mean     p75     p99    p995    p999     rme  samples
-   · smol-toml                64,055.67  0.0145  0.3111  0.0156  0.0149  0.0304  0.0337  0.1322  ±0.44%    32028
-   · @iarna/toml              31,794.37  0.0265  0.5115  0.0315  0.0278  0.0827  0.0999  0.1984  ±0.76%    15898
-   · @ltd/j-toml              15,667.64  0.0546  2.4470  0.0638  0.0604  0.1360  0.1694  0.8347  ±1.98%     7834
-   · @decimalturn/toml-patch  11,993.33  0.0620  2.5471  0.0834  0.0733  0.2595  0.2908  0.9955  ±2.18%     5997
-   · fast-toml                43,677.40  0.0204  0.3813  0.0229  0.0208  0.0484  0.0527  0.1441  ±0.50%    21839
+ ✓ bench/parseSpecExample.bench.ts 3715ms
+     name                hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · smol-toml    62,594.22  0.0146  0.3711  0.0160  0.0151  0.0316  0.0366  0.1484  ±0.54%    31298
+   · @iarna/toml  33,798.46  0.0264  2.1466  0.0296  0.0274  0.0669  0.0817  0.1979  ±1.31%    16900
+   · @ltd/j-toml  14,664.81  0.0549  2.6407  0.0682  0.0612  0.1587  0.2184  0.8877  ±2.38%     7333
+   · toml-patch1  12,978.89  0.0588  2.7721  0.0770  0.0684  0.2498  0.2759  0.4205  ±2.17%     6490
+   · toml-patch2  10,018.48  0.0662  5.3418  0.0998  0.1287  0.2675  0.3347  0.5623  ±3.07%     5010
+   · fast-toml    38,533.75  0.0204  3.5757  0.0260  0.0211  0.0564  0.0677  0.2202  ±2.56%    19267
 
- ✓ bench/stringifySpecExample.bench.ts 2531ms
-     name                             hz     min     max    mean     p75     p99    p995    p999     rme  samples
-   · smol-toml                150,348.78  0.0060  0.3046  0.0067  0.0062  0.0132  0.0164  0.0517  ±0.46%    75176
-   · @iarna/toml               33,999.73  0.0199  2.5972  0.0294  0.0391  0.0691  0.0845  0.3174  ±2.16%    17001
-   · @ltd/j-toml                4,675.29  0.1790  2.0599  0.2139  0.2029  0.4663  0.4839  0.6922  ±1.46%     2338
-   · @decimalturn/toml-patch    4,337.78  0.1692  4.6254  0.2305  0.2087  0.4996  0.5905  2.2308  ±2.83%     2169
+ ✓ bench/stringifySpecExample.bench.ts 3125ms
+     name                 hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · smol-toml    149,918.63  0.0059  0.9059  0.0067  0.0061  0.0135  0.0164  0.0459  ±0.59%    74961
+   · @iarna/toml   37,677.02  0.0201  3.8878  0.0265  0.0210  0.0632  0.0848  0.2892  ±3.13%    18843
+   · @ltd/j-toml    3,519.01  0.1789  2.7397  0.2842  0.3560  0.7727  1.2068  2.1930  ±2.69%     1760
+   · toml-patch1    4,471.38  0.1635  2.5681  0.2236  0.2022  0.5338  0.6763  2.5301  ±2.49%     2236
+   · toml-patch2    4,106.66  0.1697  2.5521  0.2435  0.2802  0.6478  0.6867  1.1367  ±2.19%     2054
 
- ✓ bench/stringifySpecExample.bench.ts 2531ms
-     name                             hz     min     max    mean     p75     p99    p995    p999     rme  samples
-   · smol-toml                150,348.78  0.0060  0.3046  0.0067  0.0062  0.0132  0.0164  0.0517  ±0.46%    75176
-   · @iarna/toml               33,999.73  0.0199  2.5972  0.0294  0.0391  0.0691  0.0845  0.3174  ±2.16%    17001
-   · @ltd/j-toml                4,675.29  0.1790  2.0599  0.2139  0.2029  0.4663  0.4839  0.6922  ±1.46%     2338
-   · @decimalturn/toml-patch    4,337.78  0.1692  4.6254  0.2305  0.2087  0.4996  0.5905  2.2308  ±2.83%     2169
+ ✓ bench/stringifySpecExample.bench.ts 3125ms
+     name                 hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · smol-toml    149,918.63  0.0059  0.9059  0.0067  0.0061  0.0135  0.0164  0.0459  ±0.59%    74961
+   · @iarna/toml   37,677.02  0.0201  3.8878  0.0265  0.0210  0.0632  0.0848  0.2892  ±3.13%    18843
+   · @ltd/j-toml    3,519.01  0.1789  2.7397  0.2842  0.3560  0.7727  1.2068  2.1930  ±2.69%     1760
+   · toml-patch1    4,471.38  0.1635  2.5681  0.2236  0.2022  0.5338  0.6763  2.5301  ±2.49%     2236
+   · toml-patch2    4,106.66  0.1697  2.5521  0.2435  0.2802  0.6478  0.6867  1.1367  ±2.19%     2054
 
  BENCH  Summary
 
   smol-toml - bench/parseLargeMixed.bench.ts
-    1.45x faster than @ltd/j-toml
-    NaNx faster than @decimalturn/toml-patch
-    1.06x faster than fast-toml
+    1.41x faster than @ltd/j-toml
+    NaNx faster than toml-patch1
+    NaNx faster than toml-patch2
+    0.99x faster than fast-toml
 
   smol-toml - bench/parseSpecExample.bench.ts
-    1.47x faster than fast-toml
-    2.01x faster than @iarna/toml
-    4.09x faster than @ltd/j-toml
-    5.34x faster than @decimalturn/toml-patch
+    1.62x faster than fast-toml
+    1.85x faster than @iarna/toml
+    4.27x faster than @ltd/j-toml
+    4.82x faster than toml-patch1
+    6.25x faster than toml-patch2
 
   smol-toml - bench/stringifyLargeMixed.bench.ts
-    3.41x faster than @iarna/toml
-    15.46x faster than @ltd/j-toml
-    74.02x faster than @decimalturn/toml-patch
+    3.54x faster than @iarna/toml
+    14.54x faster than @ltd/j-toml
+    33.48x faster than toml-patch2
+    36.65x faster than toml-patch1
 
   smol-toml - bench/stringifySpecExample.bench.ts
-    4.42x faster than @iarna/toml
-    32.16x faster than @ltd/j-toml
-    34.66x faster than @decimalturn/toml-patch
+    3.98x faster than @iarna/toml
+    33.53x faster than toml-patch1
+    36.51x faster than toml-patch2
+    42.60x faster than @ltd/j-toml
 
  PASS  Waiting for file changes...
        press h to show help, press q to quit

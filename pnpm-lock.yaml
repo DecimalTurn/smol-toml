@@ -8,9 +8,6 @@ importers:
 
   .:
     devDependencies:
-      '@decimalturn/toml-patch':
-        specifier: ^0.3.7
-        version: 0.3.7
       '@iarna/toml':
         specifier: 3.0.0
         version: 3.0.0
@@ -38,6 +35,12 @@ importers:
       pin-github-action:
         specifier: ^3.4.0
         version: 3.4.0
+      toml-patch1:
+        specifier: npm:toml-patch@0.2.3
+        version: toml-patch@0.2.3
+      toml-patch2:
+        specifier: npm:@decimalturn/toml-patch@0.3.7
+        version: '@decimalturn/toml-patch@0.3.7'
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -665,6 +668,9 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
+  toml-patch@0.2.3:
+    resolution: {integrity: sha512-SQI/j7f2S/iQZmoWBWNUMTfVmPbhP3+YCqxB/q8iOjdnXBk29HDARHzjCazmwftZaylYuMSrTTrvJiESVyzJzw==}
+
   totalist@3.0.1:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
     engines: {node: '>=6'}
@@ -1291,6 +1297,8 @@ snapshots:
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
+
+  toml-patch@0.2.3: {}
 
   totalist@3.0.1: {}
 
