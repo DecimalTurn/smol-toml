@@ -32,6 +32,8 @@ import { readFile } from 'fs/promises'
 import { parse as smolTomlParse } from '../dist/index.js'
 import { parse as localTomlPatchParse } from '@decimalturn/toml-patch'
 import { parse as releaseTomlPatchParse } from '@decimalturn/toml-patch-release'
+import { parse as v2TomlPatchParse } from '@decimalturn/toml-patch-v2'
+import { parse as v20TomlPatchParse } from '@decimalturn/toml-patch-v2.0'
 
 const tomlSpec = await readFile(new URL('./testfiles/toml-spec-example.toml', import.meta.url), 'utf8')
 const toml5MB = await readFile(new URL('./testfiles/5mb-mixed.toml', import.meta.url), 'utf8')
@@ -68,6 +70,28 @@ summary(() => {
 					},
 					bench(toml: string) {
 						return do_not_optimize(releaseTomlPatchParse(toml))
+					},
+				}
+			})
+
+			bench('@decimalturn/toml-patch@2.1.0', function* () {
+				yield {
+					[0]() {
+						return toml
+					},
+					bench(toml: string) {
+						return do_not_optimize(v2TomlPatchParse(toml))
+					},
+				}
+			})
+
+			bench('@decimalturn/toml-patch@2.0.0', function* () {
+				yield {
+					[0]() {
+						return toml
+					},
+					bench(toml: string) {
+						return do_not_optimize(v20TomlPatchParse(toml))
 					},
 				}
 			})

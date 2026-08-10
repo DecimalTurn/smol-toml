@@ -3,6 +3,8 @@
 	"devDependencies": {
 		"@decimalturn/toml-patch": "file:../../",
 		"@decimalturn/toml-patch-release": "npm:@decimalturn/toml-patch@3.0.2",
+		"@decimalturn/toml-patch-v2": "npm:@decimalturn/toml-patch@2.1.0",
+		"@decimalturn/toml-patch-v2.0": "npm:@decimalturn/toml-patch@2.0.0",
 		"@iarna/toml": "3.0.0",
 		"@ltd/j-toml": "^1.38.0",
 		"@std/toml": "jsr:^1.0.11",
