@@ -1,0 +1,4 @@
+[submodule "bench/submodules/toml-patch"]
+	path = bench/submodules/toml-patch
+	url = https://github.com/DecimalTurn/toml-patch.git
+	branch = dev-fix-insert-scan
