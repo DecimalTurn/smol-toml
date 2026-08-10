@@ -38,8 +38,13 @@ import { stringify as v20TomlPatchStringify } from '@decimalturn/toml-patch-v2.0
 const tomlSpec = parse(await readFile(new URL('./testfiles/toml-spec-example.toml', import.meta.url), 'utf8'))
 const toml5MB = parse(await readFile(new URL('./testfiles/5mb-mixed.toml', import.meta.url), 'utf8'))
 
+const skip5MB = process.env.BENCH_SPEC_ONLY
+const scenarios = skip5MB
+	? [['spec document', tomlSpec]] as const
+	: [['spec document', tomlSpec], ['5MB document', toml5MB]] as const
+
 summary(() => {
-	for (const [name, toml] of [['spec document', tomlSpec], ['5MB document', toml5MB]] as const) {
+	for (const [name, toml] of scenarios) {
 		group(name, () => {
 			bench('smol-toml', function* () {
 				yield {
