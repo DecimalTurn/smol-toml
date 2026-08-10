@@ -11,6 +11,9 @@ importers:
       '@decimalturn/toml-patch':
         specifier: file:./submodules/toml-patch
         version: file:submodules/toml-patch
+      '@decimalturn/toml-patch-release':
+        specifier: npm:@decimalturn/toml-patch@3.0.2
+        version: '@decimalturn/toml-patch@3.0.2'
       '@iarna/toml':
         specifier: 3.0.0
         version: 3.0.0
@@ -50,6 +53,10 @@ packages:
 
   '@chevrotain/utils@12.0.0':
     resolution: {integrity: sha512-lB59uJoaGIfOOL9knQqQRfhl9g7x8/wqFkp13zTdkRu1huG9kg6IJs1O8hqj9rs6h7orGxHJUKb+mX3rPbWGhA==}
+
+  '@decimalturn/toml-patch@3.0.2':
+    resolution: {integrity: sha512-0qEaybovbKCOTCmOiXj7PgajYsoMhiphka0sjWqT/up5WE9LQF/SRDFcL65CG6IhyyxmKrxjcLROqgDNHMMGWw==}
+    engines: {node: '>=16'}
 
   '@decimalturn/toml-patch@file:submodules/toml-patch':
     resolution: {directory: submodules/toml-patch, type: directory}
@@ -107,6 +114,8 @@ snapshots:
   '@chevrotain/types@12.0.0': {}
 
   '@chevrotain/utils@12.0.0': {}
+
+  '@decimalturn/toml-patch@3.0.2': {}
 
   '@decimalturn/toml-patch@file:submodules/toml-patch': {}
 

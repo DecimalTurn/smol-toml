@@ -30,7 +30,8 @@ import { bench, do_not_optimize, group, run, summary } from 'mitata'
 
 import { readFile } from 'fs/promises'
 import { parse as smolTomlParse } from '../dist/index.js'
-import { parse as dtTomlPatchParse } from '@decimalturn/toml-patch'
+import { parse as localTomlPatchParse } from '@decimalturn/toml-patch'
+import { parse as releaseTomlPatchParse } from '@decimalturn/toml-patch-release'
 
 const tomlSpec = await readFile(new URL('./testfiles/toml-spec-example.toml', import.meta.url), 'utf8')
 const toml5MB = await readFile(new URL('./testfiles/5mb-mixed.toml', import.meta.url), 'utf8')
@@ -49,13 +50,24 @@ summary(() => {
 				}
 			})
 
-			bench('@decimalturn/toml-patch', function* () {
+			bench('@decimalturn/toml-patch (local submodule)', function* () {
 				yield {
 					[0]() {
 						return toml
 					},
 					bench(toml: string) {
-						return do_not_optimize(dtTomlPatchParse(toml))
+						return do_not_optimize(localTomlPatchParse(toml))
+					},
+				}
+			})
+
+			bench('@decimalturn/toml-patch@3.0.2 (release)', function* () {
+				yield {
+					[0]() {
+						return toml
+					},
+					bench(toml: string) {
+						return do_not_optimize(releaseTomlPatchParse(toml))
 					},
 				}
 			})
