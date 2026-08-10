@@ -29,7 +29,7 @@
 import { bench, do_not_optimize, group, run, summary } from 'mitata'
 
 import { readFile } from 'fs/promises'
-import { parse } from '../dist/index.js'
+import { parse, stringify as smolTomlStringify } from '../dist/index.js'
 import { stringify as dtTomlPatchStringify } from '@decimalturn/toml-patch'
 
 const tomlSpec = parse(await readFile(new URL('./testfiles/toml-spec-example.toml', import.meta.url), 'utf8'))
@@ -38,6 +38,17 @@ const toml5MB = parse(await readFile(new URL('./testfiles/5mb-mixed.toml', impor
 summary(() => {
 	for (const [name, toml] of [['spec document', tomlSpec], ['5MB document', toml5MB]] as const) {
 		group(name, () => {
+			bench('smol-toml', function* () {
+				yield {
+					[0]() {
+						return toml
+					},
+					bench(toml: any) {
+						return do_not_optimize(smolTomlStringify(toml))
+					},
+				}
+			})
+
 			bench('@decimalturn/toml-patch', function* () {
 				yield {
 					[0]() {
