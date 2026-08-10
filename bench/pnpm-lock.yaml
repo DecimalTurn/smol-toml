@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@decimalturn/toml-patch':
-        specifier: file:./submodules/toml-patch
-        version: file:submodules/toml-patch
+        specifier: file:../../
+        version: submodules@file:../..
       '@decimalturn/toml-patch-release':
         specifier: npm:@decimalturn/toml-patch@3.0.2
         version: '@decimalturn/toml-patch@3.0.2'
@@ -58,10 +58,6 @@ packages:
     resolution: {integrity: sha512-0qEaybovbKCOTCmOiXj7PgajYsoMhiphka0sjWqT/up5WE9LQF/SRDFcL65CG6IhyyxmKrxjcLROqgDNHMMGWw==}
     engines: {node: '>=16'}
 
-  '@decimalturn/toml-patch@file:submodules/toml-patch':
-    resolution: {directory: submodules/toml-patch, type: directory}
-    engines: {node: '>=16'}
-
   '@iarna/toml@3.0.0':
     resolution: {integrity: sha512-td6ZUkz2oS3VeleBcN+m//Q6HlCFCPrnI0FZhrt/h4XqLEdOyYp2u21nd8MdsR+WJy5r9PTDaHTDDfhf4H4l6Q==}
 
@@ -86,6 +82,9 @@ packages:
 
   js-toml@1.1.2:
     resolution: {integrity: sha512-noryT8sUWOuqWKfU5mNWZXBp5PUS9rkz6w3/EQcptJZBTVhgBD8j5/u6x+HWrWxoNn9hUYmuy8GYyT4NdvOHRg==}
+
+  submodules@file:../..:
+    resolution: {directory: ../.., type: directory}
 
   toml@4.1.1:
     resolution: {integrity: sha512-EBJnVBr3dTXdA89WVFoAIPUqkBjxPMwRqsfuo1r240tKFHXv3zgca4+NJib/h6TyvGF7vOawz0jGuryJCdNHrw==}
@@ -117,8 +116,6 @@ snapshots:
 
   '@decimalturn/toml-patch@3.0.2': {}
 
-  '@decimalturn/toml-patch@file:submodules/toml-patch': {}
-
   '@iarna/toml@3.0.0': {}
 
   '@jsr/std__collections@1.2.0': {}
@@ -145,6 +142,8 @@ snapshots:
     dependencies:
       chevrotain: 12.0.0
       xregexp: 5.1.2
+
+  submodules@file:../..: {}
 
   toml@4.1.1: {}
 

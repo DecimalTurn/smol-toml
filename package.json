@@ -33,6 +33,7 @@
 	},
 	"scripts": {
 		"test": "vitest",
+		"bench": "vitest run --config vitest.config.ts",
 		"update-gha": "pin-github-action .github/workflows"
 	},
 	"devDependencies": {
