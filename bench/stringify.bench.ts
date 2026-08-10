@@ -29,11 +29,7 @@
 import { bench, do_not_optimize, group, run, summary } from 'mitata'
 
 import { readFile } from 'fs/promises'
-import { stringify as smolTomlStringify, parse } from '../dist/index.js'
-import { stringify as iarnaTomlStringify } from '@iarna/toml'
-import { stringify as ltdJTomlStringify } from '@ltd/j-toml'
-import { stringify as denoStdStringify } from '@std/toml'
-import { dump as jsTomlStringify } from 'js-toml'
+import { parse } from '../dist/index.js'
 import { stringify as dtTomlPatchStringify } from '@decimalturn/toml-patch'
 
 const tomlSpec = parse(await readFile(new URL('./testfiles/toml-spec-example.toml', import.meta.url), 'utf8'))
@@ -42,61 +38,6 @@ const toml5MB = parse(await readFile(new URL('./testfiles/5mb-mixed.toml', impor
 summary(() => {
 	for (const [name, toml] of [['spec document', tomlSpec], ['5MB document', toml5MB]] as const) {
 		group(name, () => {
-			bench('smol-toml', function* () {
-				yield {
-					[0]() {
-						return toml
-					},
-					bench(toml: any) {
-						return do_not_optimize(smolTomlStringify(toml))
-					},
-				}
-			})
-
-			bench('@iarna/toml', function* () {
-				yield {
-					[0]() {
-						return toml
-					},
-					bench(toml: any) {
-						return do_not_optimize(iarnaTomlStringify(toml))
-					},
-				}
-			})
-
-			bench('@ltd/j-toml', function* () {
-				yield {
-					[0]() {
-						return toml
-					},
-					bench(toml: any) {
-						return do_not_optimize(ltdJTomlStringify(toml))
-					},
-				}
-			})
-
-			bench("deno's @std/toml", function* () {
-				yield {
-					[0]() {
-						return toml
-					},
-					bench(toml: any) {
-						return do_not_optimize(denoStdStringify(toml))
-					},
-				}
-			})
-
-			bench('js-toml', function* () {
-				yield {
-					[0]() {
-						return toml
-					},
-					bench(toml: any) {
-						return do_not_optimize(jsTomlStringify(toml))
-					},
-				}
-			})
-
 			bench('@decimalturn/toml-patch', function* () {
 				yield {
 					[0]() {
