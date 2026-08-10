@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@decimalturn/toml-patch':
-        specifier: github:DecimalTurn/toml-patch#dev-fix-insert-scan
-        version: https://codeload.github.com/DecimalTurn/toml-patch/tar.gz/725a7ee1f112e7af52a58de78fa83a90cad3c631
+        specifier: file:./submodules/toml-patch
+        version: file:submodules/toml-patch
       '@iarna/toml':
         specifier: 3.0.0
         version: 3.0.0
@@ -51,9 +51,8 @@ packages:
   '@chevrotain/utils@12.0.0':
     resolution: {integrity: sha512-lB59uJoaGIfOOL9knQqQRfhl9g7x8/wqFkp13zTdkRu1huG9kg6IJs1O8hqj9rs6h7orGxHJUKb+mX3rPbWGhA==}
 
-  '@decimalturn/toml-patch@https://codeload.github.com/DecimalTurn/toml-patch/tar.gz/725a7ee1f112e7af52a58de78fa83a90cad3c631':
-    resolution: {tarball: https://codeload.github.com/DecimalTurn/toml-patch/tar.gz/725a7ee1f112e7af52a58de78fa83a90cad3c631}
-    version: 3.0.2
+  '@decimalturn/toml-patch@file:submodules/toml-patch':
+    resolution: {directory: submodules/toml-patch, type: directory}
     engines: {node: '>=16'}
 
   '@iarna/toml@3.0.0':
@@ -109,7 +108,7 @@ snapshots:
 
   '@chevrotain/utils@12.0.0': {}
 
-  '@decimalturn/toml-patch@https://codeload.github.com/DecimalTurn/toml-patch/tar.gz/725a7ee1f112e7af52a58de78fa83a90cad3c631': {}
+  '@decimalturn/toml-patch@file:submodules/toml-patch': {}
 
   '@iarna/toml@3.0.0': {}
 
