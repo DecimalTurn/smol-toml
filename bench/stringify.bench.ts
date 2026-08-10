@@ -30,18 +30,33 @@ import { bench, do_not_optimize, group, run, summary } from 'mitata'
 
 import { readFile } from 'fs/promises'
 import { parse, stringify as smolTomlStringify } from '../dist/index.js'
-import { stringify as localTomlPatchStringify } from '@decimalturn/toml-patch'
-import { stringify as releaseTomlPatchStringify } from '@decimalturn/toml-patch-release'
-import { stringify as v2TomlPatchStringify } from '@decimalturn/toml-patch-v2'
-import { stringify as v20TomlPatchStringify } from '@decimalturn/toml-patch-v2.0'
+import { stringify as localTomlPatchStringify } from '@decimalturn/toml-patch-local'
+import { stringify as v302TomlPatchStringify } from '@decimalturn/toml-patch-v3.0.2'
+import { stringify as v210TomlPatchStringify } from '@decimalturn/toml-patch-v2.1.0'
+import { stringify as v200TomlPatchStringify } from '@decimalturn/toml-patch-v2.0.0'
 
 const tomlSpec = parse(await readFile(new URL('./testfiles/toml-spec-example.toml', import.meta.url), 'utf8'))
 const toml5MB = parse(await readFile(new URL('./testfiles/5mb-mixed.toml', import.meta.url), 'utf8'))
 
-const skip5MB = process.env.BENCH_SPEC_ONLY
+const skip5MB = process.env.BENCH_SPEC_ONLY === '1'
 const scenarios = skip5MB
 	? [['spec document', tomlSpec]] as const
 	: [['spec document', tomlSpec], ['5MB document', toml5MB]] as const
+
+// JIT warmup: call each function 50× on the spec doc so V8 is optimized before benchmarking
+const stringifiers = [
+	smolTomlStringify,
+	localTomlPatchStringify,
+	v302TomlPatchStringify,
+	v210TomlPatchStringify,
+	v200TomlPatchStringify,
+]
+for (const fn of stringifiers) {
+	for (let i = 0; i < 50; i++) {
+		try { fn(tomlSpec) } catch { /* ignore */ }
+	}
+}
+await new Promise(r => setTimeout(r, 50))
 
 summary(() => {
 	for (const [name, toml] of scenarios) {
@@ -57,7 +72,7 @@ summary(() => {
 				}
 			})
 
-			bench('@decimalturn/toml-patch (local submodule)', function* () {
+			bench('@decimalturn/toml-patch-local (local submodule)', function* () {
 				yield {
 					[0]() {
 						return toml
@@ -68,13 +83,13 @@ summary(() => {
 				}
 			})
 
-			bench('@decimalturn/toml-patch@3.0.2 (release)', function* () {
+			bench('@decimalturn/toml-patch@3.0.2', function* () {
 				yield {
 					[0]() {
 						return toml
 					},
 					bench(toml: any) {
-						return do_not_optimize(releaseTomlPatchStringify(toml))
+						return do_not_optimize(v302TomlPatchStringify(toml))
 					},
 				}
 			})
@@ -85,7 +100,7 @@ summary(() => {
 						return toml
 					},
 					bench(toml: any) {
-						return do_not_optimize(v2TomlPatchStringify(toml))
+						return do_not_optimize(v210TomlPatchStringify(toml))
 					},
 				}
 			})
@@ -96,7 +111,7 @@ summary(() => {
 						return toml
 					},
 					bench(toml: any) {
-						return do_not_optimize(v20TomlPatchStringify(toml))
+						return do_not_optimize(v200TomlPatchStringify(toml))
 					},
 				}
 			})

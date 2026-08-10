@@ -30,18 +30,33 @@ import { bench, do_not_optimize, group, run, summary } from 'mitata'
 
 import { readFile } from 'fs/promises'
 import { parse as smolTomlParse } from '../dist/index.js'
-import { parse as localTomlPatchParse } from '@decimalturn/toml-patch'
-import { parse as releaseTomlPatchParse } from '@decimalturn/toml-patch-release'
-import { parse as v2TomlPatchParse } from '@decimalturn/toml-patch-v2'
-import { parse as v20TomlPatchParse } from '@decimalturn/toml-patch-v2.0'
+import { parse as localTomlPatchParse } from '@decimalturn/toml-patch-local'
+import { parse as v302TomlPatchParse } from '@decimalturn/toml-patch-v3.0.2'
+import { parse as v210TomlPatchParse } from '@decimalturn/toml-patch-v2.1.0'
+import { parse as v200TomlPatchParse } from '@decimalturn/toml-patch-v2.0.0'
 
 const tomlSpec = await readFile(new URL('./testfiles/toml-spec-example.toml', import.meta.url), 'utf8')
 const toml5MB = await readFile(new URL('./testfiles/5mb-mixed.toml', import.meta.url), 'utf8')
 
-const skip5MB = process.env.BENCH_SPEC_ONLY
+const skip5MB = process.env.BENCH_SPEC_ONLY === '1'
 const scenarios = skip5MB
 	? [['spec document', tomlSpec]] as const
 	: [['spec document', tomlSpec], ['5MB document', toml5MB]] as const
+
+// --- JIT warmup: call each function 50× on the spec doc so V8 is optimized before benchmarking ---
+const parsers = [
+	smolTomlParse,
+	localTomlPatchParse,
+	v302TomlPatchParse,
+	v210TomlPatchParse,
+	v200TomlPatchParse,
+]
+for (const fn of parsers) {
+	for (let i = 0; i < 50; i++) {
+		try { fn(tomlSpec) } catch { /* ignore */ }
+	}
+}
+await new Promise(r => setTimeout(r, 50))
 
 summary(() => {
 	for (const [name, toml] of scenarios) {
@@ -57,7 +72,7 @@ summary(() => {
 				}
 			})
 
-			bench('@decimalturn/toml-patch (local submodule)', function* () {
+			bench('@decimalturn/toml-patch-local (local submodule)', function* () {
 				yield {
 					[0]() {
 						return toml
@@ -68,13 +83,13 @@ summary(() => {
 				}
 			})
 
-			bench('@decimalturn/toml-patch@3.0.2 (release)', function* () {
+			bench('@decimalturn/toml-patch@3.0.2', function* () {
 				yield {
 					[0]() {
 						return toml
 					},
 					bench(toml: string) {
-						return do_not_optimize(releaseTomlPatchParse(toml))
+						return do_not_optimize(v302TomlPatchParse(toml))
 					},
 				}
 			})
@@ -85,7 +100,7 @@ summary(() => {
 						return toml
 					},
 					bench(toml: string) {
-						return do_not_optimize(v2TomlPatchParse(toml))
+						return do_not_optimize(v210TomlPatchParse(toml))
 					},
 				}
 			})
@@ -96,7 +111,7 @@ summary(() => {
 						return toml
 					},
 					bench(toml: string) {
-						return do_not_optimize(v20TomlPatchParse(toml))
+						return do_not_optimize(v200TomlPatchParse(toml))
 					},
 				}
 			})
